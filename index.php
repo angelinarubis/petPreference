@@ -18,7 +18,7 @@ file_put_contents($name, $data);
     <link href="jsPsych/css/jspsych.css" rel="stylesheet" type="text/css"></link>
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
-  <body  style="background-color:grey;">  
+  <body  style="background-color:white;">  
     <?php include 'include/consent.php'?>
   </body>
   <footer>
