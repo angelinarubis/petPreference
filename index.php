@@ -27,8 +27,6 @@ file_put_contents($name, $data);
     <!-- absolute path -->
     <!-- <script src="/Users/angelinarubis/.bitnami/stackman/machines/xampp/volumes/root/htdocs/loop_img/main.js"></script> -->
     <script type="text/javascript" src="//code.jquery.com/jquery-git.js"></script>
-    
     <script src="js/consent-load.js"></script>  
-
   </footer>
 </html>
