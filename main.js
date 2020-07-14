@@ -119,6 +119,7 @@
     // let link = "https://survey.az1.qualtrics.com/SE/?SID=SV_9uARDX1aXEXq1pP&Q_JFE=0&workerId="
     var debrief_block = {
       type: "html-keyboard-response",
+     
       stimulus: function() {
           var preference;
           var dogs = jsPsych.data.get().filter({test_part: 'dogs'});
@@ -126,10 +127,20 @@
           var accuracy_dogs = Math.round(correct_dogs.count() / dogs.count() * 100); //
           var rt_dogs = Math.round(dogs.select('rt').mean());
 
-  
+          var accessories_preference;
+          var accessories_dogs = jsPsych.data.get().filter({test_part: 'dogs', accessories: 'yes'});
+          var accessories_selected_dogs = accessories_dogs.filter({correct: '1'});
+          var accessories_preference_dogs = Math.round(accessories_selected_dogs.count() / correct_dogs.count() * 100); //
+
           var cats = jsPsych.data.get().filter({test_part: 'cats'});
           var correct_cats = cats.filter({correct: '1'});
           var accuracy_cats = Math.round(correct_cats.count() / cats.count() * 100);
+
+          var accessories_cats = jsPsych.data.get().filter({test_part: 'cats', accessories: 'yes'});
+          var accessories_selected_cats = accessories_cats.filter({correct: '1'});
+          var accessories_preference_cats = Math.round(accessories_selected_cats.count() / correct_cats.count() * 100); //
+
+          
           var rt_cats = Math.round(cats.select('rt').mean());
 
           if (accuracy_dogs > accuracy_cats) {
@@ -138,15 +149,35 @@
             preference = "You like cats more than dogs."
           } else {
             preference = 'You love your animals equally!:3 '
-          }
+          };
+
+          if (accuracy_dogs > accuracy_cats && accessories_preference_dogs>accessories_preference_cats) {
+            accessories_preference = "You like dogs more and most of them have accessories"
+        } else if (accuracy_dogs > accuracy_cats &&accessories_preference_dogs<accessories_preference_cats) {
+            accessories_preference ="You like dogs more and you prefer cats with accessories"
+        } else if (accuracy_dogs <accuracy_cats && accessories_preference_dogs<accessories_preference_cats) {
+            accessories_preference = "You like cats more and most of them have accessories"
+        } else if (accuracy_dogs <accuracy_cats && accessories_preference_dogs>accessories_preference_cats) {
+            accessories_preference = "You like cats more and you prefer dogs with accessories"
+        };
+
+        if (accessories_preference_dogs > 50) {
+          conclusion ='You are more likely to prefer dogs if they have accessories'
+        } else if (accessories_preference_cats > 50){
+          conclusion = 'You are more likely to prefer cats if they have accessories'
+        } else {
+          conclusion = 'Not sure :/'
+        }
 
           return "<p>" +preference + "</p>" + "<p> You liked "+accuracy_dogs+"% of the dogs.</p>"+ "<p>You liked "+accuracy_cats+"% of the cats.</p>"+
-          "<p>Your average response time was "+rt_dogs+"ms for dogs and " +rt_cats+ "for cats.</p>"+
-          "<p>Press any key to complete the experiment. Thank you!</p>";
+          "<p>"+ accessories_preference + "</p>" +
+          "<p>" + conclusion+ "</p>" + 
+          "<p>"+ accessories_preference_dogs + "% of the dogs that you liked had accessories. And " + accessories_preference_cats+ "% of the cats that you liked had accessories</p>" +
+          "<p> Your average response time was "+rt_dogs+"ms for dogs and " +rt_cats+ "ms for cats.</p>" +
+          "<p>Press any key to complete the experiment. Thank you!</p>" ;
       
       }
-      };
-      
+    };
       timeline.push(debrief_block);
 
 

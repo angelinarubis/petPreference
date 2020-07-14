@@ -13,6 +13,7 @@ file_put_contents($name, $data);
   <head>
     <title>Pet Preference</title>
     <script src="jsPsych/jspsych.js"></script>
+    <script src="js/fn.js"></script>
     <script src="jsPsych/plugins/jspsych-html-keyboard-response.js"></script>
     <script src="jsPsych/plugins/jspsych-image-keyboard-response.js"></script>
     <link href="jsPsych/css/jspsych.css" rel="stylesheet" type="text/css"></link>
