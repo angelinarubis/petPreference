@@ -30,7 +30,7 @@
 
     /* START TRAINING TRIAL FOR PARTICIPANTS */
 
-    const cats = ['26.3', '24.3', '21.3', '22.3', '23.3', '25.3', '27.3', '28.3', '29.3', '30.3']
+    const cats = ['1', '2', '3','4','5','6','7','8','9','10']
     const dogs = ['1', '2', '3','4','5','6','7','8','9','10']
 
     //the for loop must iterate over the constant original and append to a string
@@ -39,37 +39,37 @@
     let cats_stimuli = [];
     //for loop
     for (let i=0; i<cats.length; i++) {
-      cats_stimuli.push('stimuli/cats/my_bitmap'+ cats[i] + '.jpg');
+      cats_stimuli.push('stimuli/cats/accessories/kitten_'+ cats[i] + '.jpg');
 
     }
     
     let dogs_stimuli = []; 
     for (let i=0; i<dogs.length; i++) {
-    dogs_stimuli.push('stimuli/dogs/dog_'+ dogs[i] + '.jpg');
+    dogs_stimuli.push('stimuli/dogs/accessories/dog_'+ dogs[i] + '.jpg');
     }
     //let full_stim = cats_stimuli.concat(dogs_stimuli);
 
     let animal_stim = [
-      {stimulus: cats_stimuli[0], data: {test_part: 'cats', correct_response: '1'}},
-      {stimulus: cats_stimuli[1], data: {test_part: 'cats', correct_response: '1'}},
-      {stimulus: cats_stimuli[2], data: {test_part: 'cats', correct_response: '1'}},
-      {stimulus: cats_stimuli[3], data: {test_part: 'cats', correct_response: '1'}},
-      {stimulus: cats_stimuli[4], data: {test_part: 'cats', correct_response: '1'}},
-      {stimulus: cats_stimuli[5], data: {test_part: 'cats', correct_response: '1'}},
-      {stimulus: cats_stimuli[6], data: {test_part: 'cats', correct_response: '1'}},
-      {stimulus: cats_stimuli[7], data: {test_part: 'cats', correct_response: '1'}},
-      {stimulus: cats_stimuli[8], data: {test_part: 'cats', correct_response: '1'}},
-      {stimulus: cats_stimuli[9], data: {test_part: 'cats', correct_response: '1'}},
-      {stimulus: dogs_stimuli[0], data: {test_part: 'dogs', correct_response: '1'}},
-      {stimulus: dogs_stimuli[1], data: {test_part: 'dogs', correct_response: '1'}},
-      {stimulus: dogs_stimuli[2], data: {test_part: 'dogs', correct_response: '1'}},
-      {stimulus: dogs_stimuli[3], data: {test_part: 'dogs', correct_response: '1'}},
-      {stimulus: dogs_stimuli[4], data: {test_part: 'dogs', correct_response: '1'}},
-      {stimulus: dogs_stimuli[5], data: {test_part: 'dogs', correct_response: '1'}},
-      {stimulus: dogs_stimuli[6], data: {test_part: 'dogs', correct_response: '1'}},
-      {stimulus: dogs_stimuli[7], data: {test_part: 'dogs', correct_response: '1'}},
-      {stimulus: dogs_stimuli[8], data: {test_part: 'dogs', correct_response: '1'}},
-      {stimulus: dogs_stimuli[9], data: {test_part: 'dogs', correct_response: '1'}},
+      {stimulus: cats_stimuli[0], data: {test_part: 'cats', accessories: 'no', correct_response: '1'}},
+      {stimulus: cats_stimuli[1], data: {test_part: 'cats', accessories: 'no', correct_response: '1'}},
+      {stimulus: cats_stimuli[2], data: {test_part: 'cats', accessories: 'no', correct_response: '1'}},
+      {stimulus: cats_stimuli[3], data: {test_part: 'cats', accessories: 'no', correct_response: '1'}},
+      {stimulus: cats_stimuli[4], data: {test_part: 'cats', accessories: 'no', correct_response: '1'}},
+      {stimulus: cats_stimuli[5], data: {test_part: 'cats', accessories: 'yes', correct_response: '1'}},
+      {stimulus: cats_stimuli[6], data: {test_part: 'cats', accessories: 'yes', correct_response: '1'}},
+      {stimulus: cats_stimuli[7], data: {test_part: 'cats', accessories: 'yes', correct_response: '1'}},
+      {stimulus: cats_stimuli[8], data: {test_part: 'cats', accessories: 'yes', correct_response: '1'}},
+      {stimulus: cats_stimuli[9], data: {test_part: 'cats', accessories: 'yes', correct_response: '1'}},
+      {stimulus: dogs_stimuli[0], data: {test_part: 'dogs', accessories: 'no', correct_response: '1'}},
+      {stimulus: dogs_stimuli[1], data: {test_part: 'dogs', accessories: 'no', correct_response: '1'}},
+      {stimulus: dogs_stimuli[2], data: {test_part: 'dogs', accessories: 'no', correct_response: '1'}},
+      {stimulus: dogs_stimuli[3], data: {test_part: 'dogs', accessories: 'no', correct_response: '1'}},
+      {stimulus: dogs_stimuli[4], data: {test_part: 'dogs', accessories: 'no', correct_response: '1'}},
+      {stimulus: dogs_stimuli[5], data: {test_part: 'dogs', accessories: 'yes', correct_response: '1'}},
+      {stimulus: dogs_stimuli[6], data: {test_part: 'dogs', accessories: 'yes', correct_response: '1'}},
+      {stimulus: dogs_stimuli[7], data: {test_part: 'dogs', accessories: 'yes', correct_response: '1'}},
+      {stimulus: dogs_stimuli[8], data: {test_part: 'dogs', accessories: 'yes', correct_response: '1'}},
+      {stimulus: dogs_stimuli[9], data: {test_part: 'dogs', accessories: 'yes', correct_response: '1'}},
     ]
     animal_stim_shuffle = jsPsych.randomization.repeat(animal_stim, 1);
     //let full_stim_shuffle = jsPsych.randomization.repeat(full_stim, 1); //shuffled array no repeats
@@ -183,7 +183,7 @@ function saveData(name, data){
         preload_images: [cats_stimuli, dogs_stimuli],
         timeline: timeline,
         show_progress_bar: true,
-        on_finish: function(){ saveData("mooney-faces_" + workerID, jsPsych.data.get().csv()); }
+        on_finish: function(){ saveData("pet_preference_" + workerID, jsPsych.data.get().csv()); }
         //on_finish: function(){
           //jsPsych.data.get().filter([{test_part: 'test'},{test_part: 'prediction'},{test_part: 'c2_test'}]).localSave("csv", `test-self-deception-data.csv`);
             //jsPsych.data.displayData(); 
