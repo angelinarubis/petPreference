@@ -5,3 +5,8 @@ The task measures the evaluation of cuteness for animals (cats or dogs) by the r
 
     sudo chmod -R 777 petPreference/
  
+## primary outcome variables
+* % of dogs liked
+* % of cats liked
+* % of dogs liked that have accessories
+* % of cats liked that have accessories
